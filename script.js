@@ -38,5 +38,36 @@ do {
                 "\nQuantity available: [" + productQty + "]"
             );
         break
+        case 3:
+            subToProduct = Number(
+                prompt(
+                    "Insert quantity you want to sub: "
+                )
+            );
+            while (!Number.isInteger(subToProduct) || subToProduct <= 0 || subToProduct > productQty) {
+                if (!Number.isInteger(subToProduct) || subToProduct <= 0) {
+                    subToProduct = Number(
+                        prompt(
+                            "Invalid value, enter it again: "
+                        )
+                    );
+                } else if (subToProduct > productQty) {
+                    subToProduct = Number(
+                        prompt(
+                            "Can't take [" +
+                            subToProduct +
+                            "] units from stock" +
+                            "\nCurrent units available: [" +
+                            productQty + "]"
+                        )
+                    );
+                }
+            }
+            productQty -= subToProduct
+            alert(
+                "Item removed successfully!" +
+                "\nQuantity available: [" + productQty + "]"
+            );
+        break
     }
 } while (menuOption !== 4)
