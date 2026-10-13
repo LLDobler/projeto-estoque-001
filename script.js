@@ -6,20 +6,14 @@ let subToProduct = 0;
 do {
     menuOption = Number(
         prompt(
-            "You have chosen: Mechanical Keyboard!  " +
-            "\nChoose an option: " +
+            "Choose an option: " +
             "\n[1] - Check stock quantity" +
             "\n[2] - Add to stock" +
             "\n[3] - Subtract from stock" +
             "\n[4] - Close the menu"
         )
     );
-    switch (menuOption > 0 || menuOption < 5) {
-        case (menuOption <= 0 || menuOption > 4):
-            alert(
-                "Not a valid option, choose again!"
-            );
-        break
+    switch (menuOption) {
         case 1:
             alert(
                 "Product available: " + productQty + "!"
@@ -76,4 +70,4 @@ do {
             );
         break
     }
-} while (menuOption <= 0 || menuOption > 4)
+} while (menuOption !== 4)
