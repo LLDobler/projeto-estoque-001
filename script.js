@@ -6,7 +6,8 @@ let subToProduct = 0;
 do {
     menuOption = Number(
         prompt(
-            "Choose an option: " +
+            "Product: Mechanical Keyboard\n" +
+            "\nChoose an option: " +
             "\n[1] - Check stock quantity" +
             "\n[2] - Add to stock" +
             "\n[3] - Subtract from stock" +
