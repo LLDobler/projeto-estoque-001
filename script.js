@@ -19,5 +19,24 @@ do {
                 "Product available: " + productQty + "!"
             );
         break
+        case 2:
+            addToProduct = Number(
+                prompt(
+                    "Insert quantity you want to add: "
+                )
+            );
+            while (!Number.isInteger(addToProduct) || (addToProduct <= 0)) {
+                addToProduct = Number(
+                    prompt(
+                        "Invalid value, enter again: "
+                    )
+                );
+            }
+            productQty += addToProduct
+            alert(
+                "Item added successfully!" +
+                "\nQuantity available: [" + productQty + "]"
+            );
+        break
     }
 } while (menuOption !== 4)
