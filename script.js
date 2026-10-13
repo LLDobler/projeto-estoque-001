@@ -69,5 +69,11 @@ do {
                 "\nQuantity available: [" + productQty + "]"
             );
         break
+        case 4:
+        break
+        default:
+            alert(
+                "Not a valid choice, choose again!"
+            );
     }
 } while (menuOption !== 4)
