@@ -13,4 +13,11 @@ do {
             "\n[4] - Close the menu"
         )
     );
+    switch (menuOption) {
+        case 1:
+            alert(
+                "Product available: " + productQty + "!"
+            );
+        break
+    }
 } while (menuOption !== 4)
