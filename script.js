@@ -40,6 +40,12 @@ do {
             );
         break
         case 3:
+            if (productQty === 0) {
+                alert(
+                    "Item not available!"
+                );
+                break
+            }
             subToProduct = Number(
                 prompt(
                     "Insert quantity you want to sub: "
