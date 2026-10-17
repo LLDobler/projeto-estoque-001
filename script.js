@@ -1,3 +1,17 @@
+const products = [
+    {
+    name: "Mechanical Keyboard",
+    quantity: 20
+    },
+    {
+    name: "Gaming Mouse",
+    quantity: 15
+    },
+    {
+    name: "Headset",
+    quantity: 8
+    }
+];
 let productQty = 20;
 let menuOption = 0;
 let addToProduct = 0;
@@ -6,8 +20,7 @@ let subToProduct = 0;
 do {
     menuOption = Number(
         prompt(
-            "Product: Mechanical Keyboard\n" +
-            "\nChoose an option: " +
+            "Choose an option: " +
             "\n[1] - Check stock quantity" +
             "\n[2] - Add to stock" +
             "\n[3] - Subtract from stock" +
@@ -16,8 +29,17 @@ do {
     );
     switch (menuOption) {
         case 1:
+            let productList = "";
+            for (let i = 0; i < products.length; i++) {
+                const productProp = products[i];
+                productList += productProp.name +
+                " = " +
+                productProp.quantity +
+                "\n";
+            }
             alert(
-                "Product available: " + productQty + "!"
+                "Products available: \n\n" +
+                productList
             );
         break
         case 2:
