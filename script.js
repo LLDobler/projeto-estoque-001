@@ -12,9 +12,7 @@ const products = [
     quantity: 8
     }
 ];
-let productQty = 20;
 let menuOption = 0;
-let addToProduct = 0;
 let subToProduct = 0;
 
 do {
@@ -43,23 +41,52 @@ do {
             );
         break
         case 2:
-            addToProduct = Number(
-                prompt(
-                    "Insert quantity you want to add: "
-                )
+            let productFound = false;
+            let addOption = prompt(
+                "Insert the name of the product that you want to add units:"
             );
-            while (!Number.isInteger(addToProduct) || (addToProduct <= 0)) {
-                addToProduct = Number(
-                    prompt(
-                        "Invalid value, enter again: "
-                    )
-                );
-            }
-            productQty += addToProduct
-            alert(
-                "Item added successfully!" +
-                "\nQuantity available: [" + productQty + "]"
-            );
+            do {
+                for (let i = 0; i < products.length; i++) {
+                    if (products[i].name === addOption) {
+                        productFound = true;
+                        let valueToAdd = Number(
+                            prompt(
+                                "How much do you want to add in the " +
+                                addOption +
+                                " item:"
+                            )
+                        );
+                        while (!Number.isInteger(valueToAdd) || (valueToAdd <= 0)) {
+                            valueToAdd = Number(
+                                prompt(
+                                    "Invalid value, please enter it again: "
+                                )
+                            );
+                        }
+                        products[i].quantity += valueToAdd;
+                        alert(
+                            "[" +
+                            valueToAdd +
+                            "] units added to " +
+                            addOption +
+                            " stock!" +
+                            "\nAvailable " +
+                            addOption +
+                            " units in stock: [" +
+                            products[i].quantity +
+                            "]"
+                        );
+                    }
+                }
+                if (!productFound) {
+                    addOption = prompt(
+                        "Product '" +
+                        addOption +
+                        "' could not be found!" +
+                        "\nPlease, enter it again"
+                    );
+                }
+            } while (!productFound);
         break
         case 3:
             if (productQty === 0) {
