@@ -28,65 +28,77 @@ do {
     switch (menuOption) {
         case 1:
             let productsStockList = "";
-            for (let i = 0; i < products.length; i++) {
-                const productProp = products[i];
-                productsStockList += productProp.name +
-                " = " +
-                productProp.quantity +
-                "\n";
+            if (products.length === 0) {
+                alert(
+                    "There's no product registered in stock!"
+                );
+            } else {
+                for (let i = 0; i < products.length; i++) {
+                    const productProp = products[i];
+                    productsStockList += productProp.name +
+                    " = " +
+                    productProp.quantity +
+                    "\n";
+                }
+                alert(
+                    "Products available: \n\n" +
+                    productsStockList
+                );
             }
-            alert(
-                "Products available: \n\n" +
-                productsStockList
-            );
         break
         case 2:
-            let productFoundAdd = false;
-            let addOption = prompt(
-                "Insert the name of the product that you want to add units:"
-            );
-            do {
-                for (let i = 0; i < products.length; i++) {
-                    if (products[i].name === addOption) {
-                        productFoundAdd = true;
-                        let valueToAdd = Number(
-                            prompt(
-                                "How much do you want to add in the " +
-                                addOption +
-                                " item:"
-                            )
-                        );
-                        while (!Number.isInteger(valueToAdd) || (valueToAdd <= 0)) {
-                            valueToAdd = Number(
+            if (products.length === 0) {
+                alert(
+                    "Can't add any units because there's no product registered in stock!"
+                );
+            } else {
+                let productFoundAdd = false;
+                let addOption = prompt(
+                    "Insert the name of the product that you want to add units:"
+                );
+                do {
+                    for (let i = 0; i < products.length; i++) {
+                        if (products[i].name === addOption) {
+                            productFoundAdd = true;
+                            let valueToAdd = Number(
                                 prompt(
-                                    "Invalid value, please enter it again: "
+                                    "How much do you want to add in the " +
+                                    addOption +
+                                    " item:"
                                 )
                             );
+                            while (!Number.isInteger(valueToAdd) || (valueToAdd <= 0)) {
+                                valueToAdd = Number(
+                                    prompt(
+                                        "Invalid value, please enter it again: "
+                                    )
+                                );
+                            }
+                            products[i].quantity += valueToAdd;
+                            alert(
+                                "[" +
+                                valueToAdd +
+                                "] units added to " +
+                                addOption +
+                                " stock!" +
+                                "\nAvailable " +
+                                addOption +
+                                " units in stock: [" +
+                                products[i].quantity +
+                                "]"
+                            );
                         }
-                        products[i].quantity += valueToAdd;
-                        alert(
-                            "[" +
-                            valueToAdd +
-                            "] units added to " +
+                    }
+                    if (!productFoundAdd) {
+                        addOption = prompt(
+                            "Product '" +
                             addOption +
-                            " stock!" +
-                            "\nAvailable " +
-                            addOption +
-                            " units in stock: [" +
-                            products[i].quantity +
-                            "]"
+                            "' could not be found!" +
+                            "\nPlease, enter it again"
                         );
                     }
-                }
-                if (!productFoundAdd) {
-                    addOption = prompt(
-                        "Product '" +
-                        addOption +
-                        "' could not be found!" +
-                        "\nPlease, enter it again"
-                    );
-                }
-            } while (!productFoundAdd);
+                } while (!productFoundAdd);
+            }
         break
         case 3:
             let hasStockUnits = false;
