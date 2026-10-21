@@ -13,7 +13,6 @@ const products = [
     }
 ];
 let menuOption = 0;
-let removedProducts = [];
 
 do {
     menuOption = Number(
