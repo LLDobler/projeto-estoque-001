@@ -15,15 +15,20 @@ const products = [
 let menuOption = 0;
 
 do {
-    menuOption = Number(
+    menuOption =
         prompt(
             "Choose an option: " +
             "\n[1] - Check stock quantity" +
             "\n[2] - Add units to stock" +
             "\n[3] - Subtract units from stock" +
-            "\n[4] - Close the menu"
-        )
-    );
+            "\n[4 or Esc] - Close the menu"
+        );
+
+    if (menuOption === null) {
+        break
+    } else {
+        menuOption = Number(menuOption);
+    }
 
     switch (menuOption) {
         case 1:
@@ -56,37 +61,64 @@ do {
                 let addOption = prompt(
                     "Insert the name of the product that you want to add units:"
                 );
+                if (addOption === null) {
+                    alert(
+                        "Cancelling operation..."
+                    );
+                    break
+                }
                 do {
                     for (let i = 0; i < products.length; i++) {
                         if (products[i].name === addOption) {
                             productFoundAdd = true;
-                            let valueToAdd = Number(
+                            let valueToAdd = 0;
+
+                            valueToAdd =
                                 prompt(
                                     "How much do you want to add in the " +
                                     addOption +
                                     " item:"
-                                )
-                            );
+                                );
+                            if (valueToAdd === null) {
+                                alert(
+                                    "Cancelling operation..."
+                                );
+                                break
+                            } else {
+                                valueToAdd = Number(valueToAdd)
+                            }
                             while (!Number.isInteger(valueToAdd) || (valueToAdd <= 0)) {
-                                valueToAdd = Number(
+                                valueToAdd =
                                     prompt(
                                         "Invalid value, please enter it again: "
-                                    )
+                                    );
+
+                                    if (valueToAdd === null) {
+                                        alert(
+                                            "Cancelling operation..."
+                                        );
+                                    break
+                                    } else {
+                                        valueToAdd = Number(valueToAdd)
+                                    }
+                            }
+                            if (valueToAdd === null) {
+                                break
+                            } else {
+                                products[i].quantity += valueToAdd;
+                                alert(
+                                    "[" +
+                                    valueToAdd +
+                                    "] units added to " +
+                                    addOption +
+                                    " stock!" +
+                                    "\nAvailable " +
+                                    addOption +
+                                    " units in stock: [" +
+                                    products[i].quantity +
+                                    "]"
                                 );
                             }
-                            products[i].quantity += valueToAdd;
-                            alert(
-                                "[" +
-                                valueToAdd +
-                                "] units added to " +
-                                addOption +
-                                " stock!" +
-                                "\nAvailable " +
-                                addOption +
-                                " units in stock: [" +
-                                products[i].quantity +
-                                "]"
-                            );
                         }
                     }
                     if (!productFoundAdd) {
@@ -96,6 +128,12 @@ do {
                             "' could not be found!" +
                             "\nPlease, enter it again"
                         );
+                        if (addOption === null) {
+                            alert(
+                                "Cancelling operation..."
+                            );
+                            break
+                        }
                     }
                 } while (!productFoundAdd);
             }
@@ -130,6 +168,12 @@ do {
                 productsQtyDisplay +
                 "\nSelect a product to remove units:"
             );
+            if (subOption === null) {
+                alert(
+                    "Cancelling operation..."
+                );
+                break
+            }
 
             let selectedProduct = null;
             for (let i = 0; i < products.length; i++) {
@@ -149,16 +193,23 @@ do {
             if (selectedProduct.quantity > 0) {
                 let returnToMenu = false;
                 do {
-                    const valueToRemove = Number(
+                    let valueToRemove =
                         prompt(
                             "Selected product units in stock: [" +
                             selectedProduct.quantity +
                             "]" +
                             "\nEnter how much units " +
                             "you want to remove from stock:"
-                        )
-                    );
+                        );
 
+                    if (valueToRemove === null) {
+                        alert(
+                            "Cancelling operation..."
+                        );
+                        break
+                    } else {
+                        valueToRemove = Number(valueToRemove);
+                    }
 
                     if (valueToRemove <= 0 || !Number.isInteger(valueToRemove)) {
                         alert(
