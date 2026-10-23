@@ -19,12 +19,17 @@ do {
         prompt(
             "Choose an option: " +
             "\n[1] - Check stock quantity" +
-            "\n[2] - Add units to stock" +
-            "\n[3] - Subtract units from stock" +
-            "\n[4 or Esc] - Close the menu"
+            "\n[2] - Add a new product to stock" +
+            "\n[3] - Remove a product from stock" +
+            "\n[4] - Add units to a product" +
+            "\n[5] - Subtract units from a product" +
+            "\n[6 or Esc] - Close the menu"
         );
 
-    if (menuOption === null) {
+    if (menuOption === null || menuOption.trim() === "") {
+        alert(
+            "Shutting off..."
+        );
         break
     } else {
         menuOption = Number(menuOption);
@@ -52,16 +57,146 @@ do {
             }
         break
         case 2:
+            let productToAdd = prompt(
+                "Insert the name of the product you want to add:"
+            );
+            if (productToAdd === null || productToAdd.trim() === "") {
+                alert(
+                    "Returning to menu..."
+                );
+                break
+            }
+            while (!Number.isNaN(Number(productToAdd))) {
+                productToAdd = prompt(
+                    "Product new name can't be just numbers!" +
+                    "\nTry again:"
+                );
+                if (productToAdd === null || productToAdd.trim() === "") {
+                    alert(
+                        "Returning to menu..."
+                    );
+                    break
+                }
+            }
+            if (productToAdd === null || productToAdd.trim() === "") {
+                break
+            }
+            let isSelectedProductRegistered = false;
+            for (let i = 0; i < products.length; i++) {
+                if (productToAdd.toLowerCase().trim() === products[i].name.toLowerCase().trim()) {
+                    isSelectedProductRegistered = true;
+                    break
+                }
+            }
+            if (isSelectedProductRegistered) {
+                alert(
+                    "Selected product's registered already!" +
+                    "\nReturning to menu..."
+                );
+            } else {
+                products.push(
+                    {
+                    name: productToAdd.trim(),
+                    quantity: 0
+                    }
+                );
+                alert(
+                    "Product registered successfully!" +
+                    "\nReturning to menu..."
+                );
+                break
+            }
+        break
+        case 3:
             if (products.length === 0) {
                 alert(
-                    "Can't add any units because there's no product registered in stock!"
+                    "There's no product registered in stock!"
+                );
+                break
+            }
+            alert(
+                "Attention!" +
+                "\nThis is a highly sensitive area!" +
+                "\nWe recommend caution past this point!"
+            );
+            let productToRemove = prompt(
+                "Insert the name of the product you want to remove:"
+            );
+            if (productToRemove === null || productToRemove.trim() === "") {
+                alert(
+                    "Returning to menu..."
+                );
+                break
+            } else {
+                let doesProductExist = false;
+                let selectedProduct = null;
+                let selectedProductIndex = null;
+                for (let i = 0; i < products.length; i++) {
+                    if  (products[i].name.toLowerCase().trim() === productToRemove.toLowerCase().trim()) {
+                        doesProductExist = true;
+                        selectedProduct = products[i];
+                        selectedProductIndex = i
+                    }
+                }
+                while (!doesProductExist) {
+                    productToRemove = prompt(
+                        "Can't find this product!" +
+                        "\nTry again:"
+                    );
+                    if (productToRemove === null || productToRemove.trim() === "") {
+                        alert(
+                            "Returning to menu..."
+                        );
+                        break
+                    } else {
+                        for (let i = 0; i< products.length; i++) {
+                            if (products[i].name.toLowerCase().trim() === productToRemove.toLowerCase().trim()) {
+                                doesProductExist = true;
+                                selectedProduct = products[i];
+                                selectedProductIndex = i
+                            }
+                        }
+                    }
+                }
+                if (productToRemove === null || productToRemove.trim() === "") {
+                    break
+                }
+                if (doesProductExist) {
+                    productToRemove = prompt(
+                        "ATTENTION!" +
+                        "\nThe selected product and its quantities will be removed!" +
+                        "\nThis action is irreversible!" +
+                        "\nWould you like to continue? (Insert " +
+                        selectedProduct.name +
+                        " again to continue)"
+                    );
+                    // NAME MUST BE IDENTICAL TO CONFIRM DELETION
+                    if (productToRemove === selectedProduct.name) {
+                       products.splice(selectedProductIndex, 1);
+                       alert(
+                        "Product deleted from stock successfully" +
+                        "\nReturning to menu..."
+                       );
+                    } else {
+                        alert(
+                            "Returning to menu..."
+                        );
+                        break
+                    }
+                }
+            }
+            break
+            case 4:
+            if (products.length === 0) {
+                alert(
+                    "There's no product registered in stock!"
                 );
             } else {
                 let productFoundAdd = false;
                 let addOption = prompt(
                     "Insert the name of the product that you want to add units:"
                 );
-                if (addOption === null) {
+                if (addOption === null || addOption.trim() === "") {
                     alert(
                         "Cancelling operation..."
                     );
@@ -69,8 +204,9 @@ do {
                 }
                 do {
                     for (let i = 0; i < products.length; i++) {
-                        if (products[i].name === addOption) {
+                        if (products[i].name.toLowerCase().trim() === addOption.toLowerCase().trim()) {
                             productFoundAdd = true;
+                            let didUserCancelled = false;
                             let valueToAdd = 0;
 
                             valueToAdd =
@@ -79,7 +215,7 @@ do {
                                     addOption +
                                     " item:"
                                 );
-                            if (valueToAdd === null) {
+                            if (valueToAdd === null || valueToAdd.trim() === "") {
                                 alert(
                                     "Cancelling operation..."
                                 );
@@ -93,16 +229,17 @@ do {
                                         "Invalid value, please enter it again: "
                                     );
 
-                                    if (valueToAdd === null) {
+                                    if (valueToAdd === null || valueToAdd.trim() === "") {
                                         alert(
                                             "Cancelling operation..."
                                         );
+                                        didUserCancelled = true;
                                     break
                                     } else {
-                                        valueToAdd = Number(valueToAdd)
+                                        valueToAdd = Number(valueToAdd);
                                     }
                             }
-                            if (valueToAdd === null) {
+                            if (didUserCancelled) {
                                 break
                             } else {
                                 products[i].quantity += valueToAdd;
@@ -128,7 +265,7 @@ do {
                             "' could not be found!" +
                             "\nPlease, enter it again"
                         );
-                        if (addOption === null) {
+                        if (addOption === null || addOption.trim() === "") {
                             alert(
                                 "Cancelling operation..."
                             );
@@ -138,7 +275,7 @@ do {
                 } while (!productFoundAdd);
             }
         break
-        case 3:
+        case 5:
             let hasStockUnits = false;
             let productsQtyDisplay = "";
 
@@ -155,10 +292,7 @@ do {
             }
             if (!hasStockUnits) {
                 alert(
-                    "There is no units left in Stock!"
-                );
-                alert(
-                    "Returning to menu..."
+                    "There's no product units to remove!"
                 );
                 break
             }
@@ -168,7 +302,7 @@ do {
                 productsQtyDisplay +
                 "\nSelect a product to remove units:"
             );
-            if (subOption === null) {
+            if (subOption === null || subOption.trim() === "") {
                 alert(
                     "Cancelling operation..."
                 );
@@ -177,7 +311,7 @@ do {
 
             let selectedProduct = null;
             for (let i = 0; i < products.length; i++) {
-                if (products[i].name === subOption) {
+                if (products[i].name.toLowerCase().trim() === subOption.toLowerCase().trim()) {
                     selectedProduct = products[i];
                     break
                 }
@@ -202,7 +336,7 @@ do {
                             "you want to remove from stock:"
                         );
 
-                    if (valueToRemove === null) {
+                    if (valueToRemove === null || valueToRemove.trim() === "") {
                         alert(
                             "Cancelling operation..."
                         );
@@ -254,11 +388,14 @@ do {
                 );
             }
         break
-        case 4:
+        case 6:
+            alert(
+            "Shutting off..."
+            );
         break
         default:
             alert(
                 "Not a valid choice, choose again!"
             );
     }
-} while (menuOption !== 4)
+} while (menuOption !== 6)
