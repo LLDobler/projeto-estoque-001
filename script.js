@@ -26,7 +26,7 @@ do {
             "\n[6 or Esc] - Close the menu"
         );
 
-    if (menuOption === null) {
+    if (menuOption === null || menuOption.trim() === "") {
         alert(
             "Shutting off..."
         );
@@ -96,7 +96,7 @@ do {
             } else {
                 products.push(
                     {
-                    name: (productToAdd),
+                    name: productToAdd.trim(),
                     quantity: 0
                     }
                 );
@@ -150,7 +150,7 @@ do {
                         break
                     } else {
                         for (let i = 0; i< products.length; i++) {
-                            if (products[i].name.toLowerCase() === productToRemove.toLowerCase()) {
+                            if (products[i].name.toLowerCase().trim() === productToRemove.toLowerCase().trim()) {
                                 doesProductExist = true;
                                 selectedProduct = products[i];
                                 selectedProductIndex = i
@@ -170,6 +170,7 @@ do {
                         selectedProduct.name +
                         " again to continue)"
                     );
+                    // NAME MUST BE IDENTICAL TO CONFIRM DELETION
                     if (productToRemove === selectedProduct.name) {
                        products.splice(selectedProductIndex, 1);
                        alert(
@@ -195,7 +196,7 @@ do {
                 let addOption = prompt(
                     "Insert the name of the product that you want to add units:"
                 );
-                if (addOption === null) {
+                if (addOption === null || addOption.trim() === "") {
                     alert(
                         "Cancelling operation..."
                     );
@@ -203,8 +204,9 @@ do {
                 }
                 do {
                     for (let i = 0; i < products.length; i++) {
-                        if (products[i].name === addOption) {
+                        if (products[i].name.toLowerCase().trim() === addOption.toLowerCase().trim()) {
                             productFoundAdd = true;
+                            let didUserCancelled = false;
                             let valueToAdd = 0;
 
                             valueToAdd =
@@ -213,7 +215,7 @@ do {
                                     addOption +
                                     " item:"
                                 );
-                            if (valueToAdd === null) {
+                            if (valueToAdd === null || valueToAdd.trim() === "") {
                                 alert(
                                     "Cancelling operation..."
                                 );
@@ -227,16 +229,17 @@ do {
                                         "Invalid value, please enter it again: "
                                     );
 
-                                    if (valueToAdd === null) {
+                                    if (valueToAdd === null || valueToAdd.trim() === "") {
                                         alert(
                                             "Cancelling operation..."
                                         );
+                                        didUserCancelled = true;
                                     break
                                     } else {
-                                        valueToAdd = Number(valueToAdd)
+                                        valueToAdd = Number(valueToAdd);
                                     }
                             }
-                            if (valueToAdd === null) {
+                            if (didUserCancelled) {
                                 break
                             } else {
                                 products[i].quantity += valueToAdd;
@@ -262,7 +265,7 @@ do {
                             "' could not be found!" +
                             "\nPlease, enter it again"
                         );
-                        if (addOption === null) {
+                        if (addOption === null || addOption.trim() === "") {
                             alert(
                                 "Cancelling operation..."
                             );
@@ -299,7 +302,7 @@ do {
                 productsQtyDisplay +
                 "\nSelect a product to remove units:"
             );
-            if (subOption === null) {
+            if (subOption === null || subOption.trim() === "") {
                 alert(
                     "Cancelling operation..."
                 );
@@ -308,7 +311,7 @@ do {
 
             let selectedProduct = null;
             for (let i = 0; i < products.length; i++) {
-                if (products[i].name === subOption) {
+                if (products[i].name.toLowerCase().trim() === subOption.toLowerCase().trim()) {
                     selectedProduct = products[i];
                     break
                 }
@@ -333,7 +336,7 @@ do {
                             "you want to remove from stock:"
                         );
 
-                    if (valueToRemove === null) {
+                    if (valueToRemove === null || valueToRemove.trim() === "") {
                         alert(
                             "Cancelling operation..."
                         );
