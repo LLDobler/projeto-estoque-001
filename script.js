@@ -132,7 +132,7 @@ do {
                 let selectedProduct = null;
                 let selectedProductIndex = null;
                 for (let i = 0; i < products.length; i++) {
-                    if  (products[i].name.toLowerCase() === productToRemove.toLowerCase()) {
+                    if  (products[i].name.toLowerCase().trim() === productToRemove.toLowerCase().trim()) {
                         doesProductExist = true;
                         selectedProduct = products[i];
                         selectedProductIndex = i
