@@ -27,6 +27,9 @@ do {
         );
 
     if (menuOption === null) {
+        alert(
+            "Shutting off..."
+        );
         break
     } else {
         menuOption = Number(menuOption);
@@ -54,7 +57,63 @@ do {
             }
         break
         case 2:
+            let productToAdd = prompt(
+                "Insert the name of the product you want to add:"
+            );
+            if (productToAdd === null || productToAdd.trim() === "") {
+                alert(
+                    "Returning to menu..."
+                );
+                break
+            }
+            while (!Number.isNaN(Number(productToAdd))) {
+                productToAdd = prompt(
+                    "Product new name can't be just numbers!" +
+                    "\nTry again:"
+                );
+                if (productToAdd === null || productToAdd.trim() === "") {
+                    alert(
+                        "Returning to menu..."
+                    );
+                    break
+                }
+            }
+            if (productToAdd === null || productToAdd.trim() === "") {
+                break
+            }
+            let isSelectedProductRegistered = false;
+            for (let i = 0; i < products.length; i++) {
+                if (productToAdd.toLowerCase().trim() === products[i].name.toLowerCase().trim()) {
+                    isSelectedProductRegistered = true;
+                    break
+                }
+            }
+            if (isSelectedProductRegistered) {
+                alert(
+                    "Selected product's registered already!" +
+                    "\nReturning to menu..."
+                );
+            } else {
+                products.push(
+                    {
+                    name: (productToAdd),
+                    quantity: 0
+                    }
+                );
+                alert(
+                    "Product registered successfully!" +
+                    "\nReturning to menu..."
+                );
+                break
+            }
+        break
         case 3:
+            if (products.length === 0) {
+                alert(
+                    "There's no product registered in stock!"
+                );
+                break
+            }
             alert(
                 "Attention!" +
                 "\nThis is a highly sensitive area!" +
@@ -118,6 +177,9 @@ do {
                         "\nReturning to menu..."
                        );
                     } else {
+                        alert(
+                            "Returning to menu..."
+                        );
                         break
                     }
                 }
@@ -126,7 +188,7 @@ do {
             case 4:
             if (products.length === 0) {
                 alert(
-                    "Can't add any units because there's no product registered in stock!"
+                    "There's no product registered in stock!"
                 );
             } else {
                 let productFoundAdd = false;
@@ -227,10 +289,7 @@ do {
             }
             if (!hasStockUnits) {
                 alert(
-                    "There is no units left in Stock!"
-                );
-                alert(
-                    "Returning to menu..."
+                    "There's no product units to remove!"
                 );
                 break
             }
@@ -327,6 +386,9 @@ do {
             }
         break
         case 6:
+            alert(
+            "Shutting off..."
+            );
         break
         default:
             alert(
