@@ -19,9 +19,11 @@ do {
         prompt(
             "Choose an option: " +
             "\n[1] - Check stock quantity" +
-            "\n[2] - Add units to stock" +
-            "\n[3] - Subtract units from stock" +
-            "\n[4 or Esc] - Close the menu"
+            "\n[2] - Add a new product to stock" +
+            "\n[3] - Remove a product from stock" +
+            "\n[4] - Add units to a product" +
+            "\n[5] - Subtract units from a product" +
+            "\n[6 or Esc] - Close the menu"
         );
 
     if (menuOption === null) {
@@ -52,6 +54,76 @@ do {
             }
         break
         case 2:
+        case 3:
+            alert(
+                "Attention!" +
+                "\nThis is a highly sensitive area!" +
+                "\nWe recommend caution past this point!"
+            );
+            let productToRemove = prompt(
+                "Insert the name of the product you want to remove:"
+            );
+            if (productToRemove === null || productToRemove.trim() === "") {
+                alert(
+                    "Returning to menu..."
+                );
+                break
+            } else {
+                let doesProductExist = false;
+                let selectedProduct = null;
+                let selectedProductIndex = null;
+                for (let i = 0; i < products.length; i++) {
+                    if  (products[i].name.toLowerCase() === productToRemove.toLowerCase()) {
+                        doesProductExist = true;
+                        selectedProduct = products[i];
+                        selectedProductIndex = i
+                    }
+                }
+                while (!doesProductExist) {
+                    productToRemove = prompt(
+                        "Can't find this product!" +
+                        "\nTry again:"
+                    );
+                    if (productToRemove === null || productToRemove.trim() === "") {
+                        alert(
+                            "Returning to menu..."
+                        );
+                        break
+                    } else {
+                        for (let i = 0; i< products.length; i++) {
+                            if (products[i].name.toLowerCase() === productToRemove.toLowerCase()) {
+                                doesProductExist = true;
+                                selectedProduct = products[i];
+                                selectedProductIndex = i
+                            }
+                        }
+                    }
+                }
+                if (productToRemove === null || productToRemove.trim() === "") {
+                    break
+                }
+                if (doesProductExist) {
+                    productToRemove = prompt(
+                        "ATTENTION!" +
+                        "\nThe selected product and its quantities will be removed!" +
+                        "\nThis action is irreversible!" +
+                        "\nWould you like to continue? (Insert " +
+                        selectedProduct.name +
+                        " again to continue)"
+                    );
+                    if (productToRemove === selectedProduct.name) {
+                       products.splice(selectedProductIndex, 1);
+                       alert(
+                        "Product deleted from stock successfully" +
+                        "\nReturning to menu..."
+                       );
+                    } else {
+                        break
+                    }
+                }
+            }
+            break
+            case 4:
             if (products.length === 0) {
                 alert(
                     "Can't add any units because there's no product registered in stock!"
@@ -138,7 +210,7 @@ do {
                 } while (!productFoundAdd);
             }
         break
-        case 3:
+        case 5:
             let hasStockUnits = false;
             let productsQtyDisplay = "";
 
@@ -254,11 +326,11 @@ do {
                 );
             }
         break
-        case 4:
+        case 6:
         break
         default:
             alert(
                 "Not a valid choice, choose again!"
             );
     }
-} while (menuOption !== 4)
+} while (menuOption !== 6)
