@@ -1,0 +1,173 @@
+O que essa funcionalidade precisa fazer?
+CASE 3 
+RETIRAR UMA QUANTIDADE VÁLIDA DE UNIDADES DE UM PRODUTO EXISTENTE QUE TENHA ESTOQUE SUFICIENTE
+
+HAPPY PATH + ALTERNATIVE PATHS
+APÓS FINALIZADO, ESCOLHER A ORDEM CORRETA DAS PERGUNTAS
+
+USER ESCOLHE OPÇÃO RETIRAR NO MENU ______________________________________________________________
+↓
+↓→→→→ pelo menos 1 com estoque
+↓                ↓
+↓                →→→ mostra os produtos com a qtd ao lado e pede pra selecionar um
+↓                                 
+↓→→→→ produtos sem estoque nenhum
+↓                ↓
+↓                →→→ mostra "nenhum produto com unidades dispo, retornando ao menu...", retorna menu
+↓
+SELECIONE O PRODUTO _________________________________________________________________________________________
+↓
+↓→→→→ existe com estoque
+↓             ↓
+↓             →→→ pede a quantidade a ser retirada
+↓
+↓→→→→ existe sem estoque
+↓             ↓
+↓             →→→ mostra que produto não tem estoque, mostra "1 - escolher outro | 2 - voltar ao menu"
+↓
+↓→→→→ produto selecionado NÃO existe
+↓             ↓
+↓             →→→ mostra que o produto escolhido não existe, retornando, retorna ao menu
+↓
+SELECIONE A QUANTIDADE A SER RETIRADA ________________________________________________________________________
+↓
+↓→→→→ valor selecionado é <= que disponível no estoque do produto selecionado
+↓                                     ↓
+↓                                     →→→ retira o valor, mostra o sucesso e o estoque atualizado, retorna menu
+↓
+↓→→→→ valor selecionado é > que disponível no estoque do produto selecionado
+↓              ↓
+↓              →→→ mostra "qtd solicitada > q estoque, mostra estoque atual do prod, pede pra inserir novamente
+↓
+↓→→→→ valor selecionado é negativo OU decimal OU texto
+↓                      ↓
+↓                      →→→ mostra "qtd é invalida, mostra estoque atual do prod, pede pra inserir novamente 
+↓
+SISTEMA RETIRA A QUANTIDADE INFORMADA _________________________________________________________________________
+↓
+CONFIRMA O SUCESSO _________________________________________________________________
+↓
+RETORNA AO MENU ____________________________________________________________________
+
+____________________________________________________________________________________
+
+================================================================================
+CAMINHOS ALTERNATIVOS
+================================================================================
+
+→→→→→→→→→ USER ESCOLHE OPÇÃO DE RETIRAR ←←←←←←←←←←
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+SELECIONE O PRODUTO
+------------------------------------------------------------------------------
+→→→→→→→→→ USER ESCOLHE OPÇÃO DE RETIRAR ←←←←←←←←←←
+↓
+NENHUM PRODUTO TEM ESTOQUE
+↓
+MOSTRA "NENHUM PRODUTO COM UNIDADES DISPONÍVEIS, RETORNANDO AO MENU..."
+↓
+RETORNA AO MENU
+------------------------------------------------------------------------------
+USER ESCOLHE OPÇÃO DE RETIRAR
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+→→→→→→→→→ SELECIONE O PRODUTO ←←←←←←←←←←
+↓
+PRODUTO SELECIONADO TEM ESTOQUE
+↓
+SELECIONE A QUANTIDADE A SER RETIRADA
+-------------------------------------------------------------------------------
+USER ESCOLHE OPÇÃO DE RETIRAR
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+→→→→→→→→→ SELECIONE O PRODUTO ←←←←←←←←←←
+↓
+PRODUTO SELECIONADO NÃO TEM ESTOQUE
+↓
+MOSTRA "PRODUTO ESCOLHIDO NÃO POSSUI ESTOQUE, ESCOLHA OUTRO"
+↓
+RETORNA PARA SELECIONE O PRODUTO
+--------------------------------------------------------------------------------
+USER ESCOLHE OPÇÃO DE RETIRAR
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+→→→→→→→→→ SELECIONE O PRODUTO ←←←←←←←←←←
+↓
+PRODUTO SELECIONADO NÃO EXISTE
+↓ 
+MOSTRA "O PRODUTO QUE VOCE PROCURA NÃO EXISTE NO ESTOQUE, RETORNANDO AO MENU..."
+↓
+RETORNA AO MENU
+----------------------------------------------------------------------------------
+USER ESCOLHE OPÇÃO DE RETIRAR
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+SELECIONE O PRODUTO
+↓
+EXISTE COM ESTOQUE
+↓
+→→→→→→→→→ SELECIONE A QUANTIDADE A SER RETIRADA ←←←←←←←←←←
+↓
+VALOR É <= ESTOQUE DO PRODUTO SELECIONADO
+↓
+PROGRAMA RETIRA O VALOR ESCOLHIDO DO PRODUTO SELECIONADO
+↓
+MOSTRA "OPERAÇÃO REALIZADA COM SUCESSO, ESTOQUE ATUALIZADO É : (VALOR DO ESTOQUE APÓS OPERAÇÃO)"
+↓
+RETORNA AO MENU
+------------------------------------------------------------------------------------------------------
+USER ESCOLHE OPÇÃO DE RETIRAR
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+SELECIONE O PRODUTO
+↓
+EXISTE COM ESTOQUE
+↓
+→→→→→→→→→ SELECIONE A QUANTIDADE A SER RETIRADA ←←←←←←←←←←
+↓
+VALOR É > QUE ESTOQUE DO PRODUTO SELECIONADO
+↓
+MOSTRA "QUANTIDADE SOLICITADA MAIOR QUE O ESTOQUE DISPONIVEL 
+QUANTIDADE DISPONIVEL É : (VALOR ATUAL DO ESTOQUE DO PRODUTO)
+INSIRA OUTRA QUANTIDADE"
+↓
+PEDE QUANTIDADE A SER RETIRADA NOVAMENTE
+---------------------------------------------------------------------------------------------------------
+USER ESCOLHE OPÇÃO DE RETIRAR
+↓
+PELO MENOS 1 COM ESTOQUE
+↓
+MOSTRA OS PRODUTOS E AS QUANTIDADES
+↓
+SELECIONE O PRODUTO
+↓
+EXISTE COM ESTOQUE
+↓
+→→→→→→→→→ SELECIONE A QUANTIDADE A SER RETIRADA ←←←←←←←←←←
+↓
+VALOR É NEGATIVO OU ZERO OU DECIMAL OU TEXTO
+↓
+MOSTRA "QUANTIDADE ESCOLHIDA INVÁLIDA
+QUANTIDADE DISPONIVEL É: (VALOR ATUAL DO ESTOQUE DO PRODUTO)
+INSIRA OUTRA QUANTIDADE"
+↓
+PEDE QUANTIDADE A SER RETIRADA NOVAMENTE
+--------------------------------------------------------------------------------------------------------

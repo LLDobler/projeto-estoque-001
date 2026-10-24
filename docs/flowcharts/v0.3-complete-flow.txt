@@ -1,0 +1,77 @@
+User escolhe a opção "Cadastrar um novo produto"
+↓
+digite o nome do produto que gostaria de adicionar
+***adicionar validação null e "".trim() para cancelar em todos os prompts
+↓
+↓→→→→→→ prompt: user coloca cancelar ou ""
+↓                  ↓ 
+↓                  →→→ mostra: Retornando ao menu...
+↓                                ↓ 
+↓                                →→→ break → programa retorna ao menu
+↓
+↓*******************************WHILE******************************************
+↓→→→→→→ prompt: user entra com números ao invés de um nome 
+↓                           ↓
+↓                           →→→ alert: Nome não deve conter somente números!
+↓                                      tente novamente!
+↓                                                ↓
+↓                                                →→→ volta pra adicionar o nome
+↓*******************************WHILE******************************************
+↓
+↓
+↓ ***** verificação com .toLowerCase() a partir desse ponto*********** 
+↓→→→→→→ prompt: user coloca um nome que já está cadastrado.
+↓                          ↓
+↓                          →→→ mostra: produto já cadastrado! Retornando ao Menu...
+↓                                            ↓
+↓                                            →→→ break → programa retorna ao menu
+↓
+↓→→→→→→ prompt: user coloca o nome de um produto novo válido
+                        ↓
+                        →→→ programa: registra um obj novo no array products 
+                                      com nome digitado e qtd 0
+                               alert: produto registrado no estoque com sucesso!
+                                      retornando ao menu... 
+                                              ↓
+                                               →→→ break → programa retorna ao menu
+
+
+___________________________________________________________________________________
+
+User escolhe a opção "Retirar produto do Estoque"
+↓
+digite o nome do produto que gostaria de remover
+***adicionar validação null e "".trim() para cancelar
+↓
+↓→→→→→→ prompt: user coloca cancelar ou ""
+↓                  ↓ 
+↓                  →→→ mostra: Retornando ao menu... 
+↓                              break → programa retorna ao menu  
+↓
+↓*********************************WHILE********************************************
+↓→→→→→→ prompt: user entra com nome que não existe no array "products"
+↓                          ↓  
+↓                          →→→ mostra: produto não existe! 
+↓                                      Tente novamente
+↓                                               ↓
+↓                                               →→→ volta pra adicionar o nome
+↓*********************************WHILE********************************************
+↓
+↓→→→→→→ user coloca um nome válido
+       ↓
+       →→→ prompt: ATENÇÃO, 
+                   O produto e suas unidades cadastradas serão removidos!
+                   Essa ação é irreversível!
+               Gostaria de continuar? Digite *o nome do produto* novamente para continuar)
+                  ↓
+                  ↓→→→→→→ user coloca qualquer outro valor que não seja o nome do produto
+                  ↓            ↓
+                  ↓            →→→ break → programa retorna ao menu               
+                  ↓
+                  ↓→→→→→→→ user entra com o nome novamente pra confirmar
+                                 ↓
+                                  →→→ programa deleta o produto
+                                        alert: Produto deletado do estoque com sucesso!
+                                               retornando ao menu...
+                                                    ↓
+                                                     →→→ break → programa retorna ao menu

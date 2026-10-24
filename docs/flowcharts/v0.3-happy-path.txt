@@ -1,0 +1,30 @@
+User escolhe a opção "Cadastrar um novo produto"
+
+digite o nome do produto que gostaria de adicionar
+***adicionar validação null para cancelar
+
+user coloca o nome. Ex: PenDrive
+
+programa adiciona o (objeto) com o nome selecionado e quantidade 0 no array "products"
+
+mostra: produto registrado no estoque com sucesso! 
+        Retornando ao menu...
+
+__________________________________________________________________________________________
+
+User escolhe a opção "Retirar produto do Estoque"
+
+digite o nome do produto que gostaria de remover
+***adicionar validação null para cancelar
+
+user coloca o nome. Ex: Headset
+
+****prompt: ATENÇÃO, 
+            O produto e suas unidades cadastradas serão removidos!
+            Essa ação é irreversível!
+            Gostaria de continuar? (Digite o nome do produto novamente para continuar)
+
+programa remove o (objeto) selecionado do array "products"
+
+mostra: produto removido do estoque com sucesso! 
+        Retornando ao menu...
